@@ -1,0 +1,21 @@
+<h1>Checkpoint #<%= @checkpoint.id %></h1>
+
+<div>
+  <strong>Name</strong>:<br />
+  <p><%= @checkpoint.name %></p>
+</div>
+<div>
+  <strong>Goal</strong>:<br />
+  <p><%= @checkpoint.goal_id %></p>
+</div>
+<div>
+  <strong>Num</strong>:<br />
+  <p><%= @checkpoint.num %></p>
+</div>
+<div>
+  <strong>Completed</strong>:<br />
+  <p><%= @checkpoint.completed? %></p>
+</div>
+
+<a href="/checkpoints/<%= @checkpoint.id %>/edit">Edit</a> |
+<a href="/checkpoints/<%= @checkpoint.id %>/destroy">Destroy</a>

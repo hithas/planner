@@ -1,0 +1,17 @@
+<h1>Editing Day #<%= @day.id %></h1>
+
+<form action="/days/<%= @day.id %>/update">
+  <div>
+    <label for="date">date</label><br />
+    <input id="date" name="date" value="<%= @day.date  %>" type="text" />
+  </div>
+  <div>
+    <label for="weekday">weekday</label><br />
+    <input id="weekday" name="weekday" value="<%= @day.weekday  %>" type="text" />
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+</form>
+
+

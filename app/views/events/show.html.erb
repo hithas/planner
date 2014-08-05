@@ -1,0 +1,29 @@
+<h1 style="color: <%=Category.find_by(id: @event.category_id).color%>">Event #<%= @event.id %></h1>
+
+<div>
+  <strong>Start time</strong>:<br />
+  <p><%= @event.start_time %></p>
+</div>
+<div>
+  <strong>End time</strong>:<br />
+  <p><%= @event.end_time %></p>
+</div>
+<div>
+  <strong>Category</strong>:<br />
+  <p><%= @event.category_id %></p>
+</div>
+<div>
+  <strong>Day</strong>:<br />
+  <p><%= @event.day_id %></p>
+</div>
+<div>
+  <strong>Description</strong>:<br />
+  <p><%= @event.desc %></p>
+</div>
+<div>
+  <strong>Timepan</strong>:<br />
+  <p><%= @event.timespan %></p>
+</div>
+
+<a href="/events/<%= @event.id %>/edit">Edit</a> |
+<a href="/events/<%= @event.id %>/destroy">Destroy</a>

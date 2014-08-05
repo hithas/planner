@@ -1,0 +1,13 @@
+<h1>Category #<%= @category.id %></h1>
+
+<div>
+  <strong>Name</strong>:<br />
+  <p><%= @category.name %></p>
+</div>
+<div>
+  <strong>Color</strong>:<br />
+  <p><%= @category.color %></p>
+</div>
+
+<a href="/categories/<%= @category.id %>/edit">Edit</a> |
+<a href="/categories/<%= @category.id %>/destroy">Destroy</a>

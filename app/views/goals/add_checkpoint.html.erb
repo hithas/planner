@@ -1,0 +1,12 @@
+<h2> New Checkpoint for <%= @goal.name %> </h2>
+
+<form action="/goals/<%= @goal.id %>/create_checkpoint">
+  <div>
+    <label for="name">name</label><br />
+    <input id="name" name="name" type="text" />
+  </div>
+  
+  <div>
+    <input type="submit">
+  </div>
+</form>

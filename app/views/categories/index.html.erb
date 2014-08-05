@@ -1,0 +1,29 @@
+<h1>Categories</h1>
+
+<p><a href="/new_category">Add a New Category</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @categories.each do |category| %>
+    <tr>
+          <td><%= category.name %></td>
+          <td><%= category.color %></td>
+          <td><a href="/categories/<%= category.id %>">Show</a>
+        </td>
+      <td><a href="/categories/<%= category.id %>/edit">Edit</a></td>
+      <td><a href="/categories/<%= category.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

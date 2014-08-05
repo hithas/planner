@@ -1,0 +1,29 @@
+<h1>Days</h1>
+
+<p><a href="/new_day">Add a New Day</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Weekday</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @days.each do |day| %>
+    <tr>
+          <td><%= day.date %></td>
+          <td><%= day.weekday %></td>
+          <td><a href="/days/<%= day.id %>">Show</a>
+        </td>
+      <td><a href="/days/<%= day.id %>/edit">Edit</a></td>
+      <td><a href="/days/<%= day.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

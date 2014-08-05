@@ -1,0 +1,33 @@
+<h1>Checkpoints</h1>
+
+<p><a href="/new_checkpoint">Add a New Checkpoint</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Goal</th>
+      <th>Num</th>
+      <th>Completed</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @checkpoints.each do |checkpoint| %>
+    <tr>
+          <td><%= checkpoint.name %></td>
+          <td><%= checkpoint.goal_id %></td>
+          <td><%= checkpoint.num %></td>
+          <td><%= checkpoint.completed %></td>
+          <td><a href="/checkpoints/<%= checkpoint.id %>">Show</a>
+        </td>
+      <td><a href="/checkpoints/<%= checkpoint.id %>/edit">Edit</a></td>
+      <td><a href="/checkpoints/<%= checkpoint.id %>/destroy">Destroy</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
