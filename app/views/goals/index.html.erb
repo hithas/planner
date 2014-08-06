@@ -7,7 +7,7 @@
 
 <% @goals.each do |goal| %>
 
-<div class="container" style="width: 500px; display: inline-block;">
+<div class="container" style="width: 500px; display: inline-block;" id="<%= goal.id %>">
     
 <div class="panel panel-default">
       <!-- Default panel contents -->
@@ -26,10 +26,10 @@
               <% if checkpoint.completed %>
               <td><span class="glyphicon glyphicon-ok"></span></td>
               <% else %>
-              <td><span class="glyphicon glyphicon-minus"></span></td>
+              <td>-</td>
               <% end %>
-              <td>..</td>
-              <td>..</td>
+              <td>-</td>
+              <td>-</td>
             </tr>
           <% end %>
         </tbody>

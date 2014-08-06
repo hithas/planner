@@ -7,7 +7,8 @@ class GoalsController < ApplicationController
   end
 
   def show
-    if params[:id] != session['user_id']
+    @goal = Goal.find_by(id: params[:id])
+    if @goal.user_id != session['user_id']
       redirect_to "/goals", :notice => "You do not have access to this goal"
     else
       @goal = Goal.find_by(id: params[:id])
@@ -26,17 +27,18 @@ class GoalsController < ApplicationController
       @goal.checkpoints = 0
 
       if @goal.save
-        redirect_to "/goals/#{ @goal.id }"
+        redirect_to "/goals##{ @goal.id }"
       else
         redirect_to "/new_goal", :notice => @goal.errors.full_messages.join(' ')
       end
   end
 
   def edit
-    if params[:id] != session['user_id']
+    @goal = Goal.find_by(id: params[:id])
+    if @goal.user_id != session['user_id']
       redirect_to "/goals", :notice => "You do not have access to this goal"
     else
-      @goal = Goal.find_by(id: params[:id])
+      render 'edit'
     end
   end
 
@@ -81,7 +83,8 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    if params[:id] != session['user_id']
+    @goal = Goal.find_by(id: params[:id])
+    if @goal.user_id != session['user_id']
       redirect_to "/goals", :notice => "You do not have access to this goal"
     else
       @goal = Goal.find_by(id: params[:id])

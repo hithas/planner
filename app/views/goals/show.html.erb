@@ -2,7 +2,7 @@
       <!-- Default panel contents -->
       <div class="panel-heading" style="background-color: <%=Category.find_by(id: @goal.category_id).color %>;"><%= @goal.name %></div>
       <div class="panel-body">
-        <p><p><%= @goal.desc %></p></p>
+        <p><%= @goal.desc %></p>
 
       </div>
   <a href='/goals/<%= @goal.id %>/s/add_checkpoint'> Add Checkpoint </a>

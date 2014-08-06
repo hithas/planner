@@ -7,7 +7,16 @@
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <style>
-
+    
+    body{
+      background-color: #CCC;
+      background-image: url('http://3.bp.blogspot.com/-ReI6RDk2-qw/TZKIimeLUfI/AAAAAAAAAUU/dSOolUc6Yb0/s1600/dracolake1.jpg')
+    }
+    
+    #allcontent{
+      background-color: #ECFFEC;
+    }
+    
   </style>
   
 </head>
@@ -63,10 +72,11 @@
   </div><!-- /.container-fluid -->
 </nav>
   
+ <div class="container" id="allcontent">
   
   
 <%= yield %>
 
-  
+  </div>
 </body>
 </html>
