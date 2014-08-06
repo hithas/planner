@@ -6,12 +6,21 @@
     <input id="name" name="name" value="<%= @user.name  %>" type="text" />
   </div>
   <div>
+    <label for="old_password">old password</label><br />
+    <input id="old_password" name="old_password" type="text" />
+  </div>
+  <div>
     <label for="password">password</label><br />
-    <input id="password" name="password" value="<%= @user.password  %>" type="text" />
+    <input id="password" name="password" type="text" />
+  </div>
+  <div>
+    <label for="password_confirmation">password_confirmation</label><br />
+    <input id="password_confirmation" name="password_confirmation" type="text" />
   </div>
   <div>
     <input type="submit">
   </div>
 </form>
+
 
 

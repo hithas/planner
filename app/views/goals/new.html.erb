@@ -6,8 +6,16 @@
     <input id="name" name="name" type="text" />
   </div>
   <div>
-    <label for="category_id">category_id</label><br />
-    <input id="category_id" name="category_id" type="text" />
+    <label for="category_id">category</label><br />
+    <select name="category_id">
+      <% Category.all.each do |category| %>
+      <option value="<%= category.id %>"> <%= category.name %> </option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <label for="desc">description</label><br />
+    <input id="desc" name="desc" type="text" />
   </div>
   <div>
     <input type="submit">

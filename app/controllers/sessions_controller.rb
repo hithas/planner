@@ -2,13 +2,16 @@ class SessionsController < ApplicationController
   def new
   end
   
+  def home
+  end
+  
   def create
     u = User.find_by(name: params['username'])
     if u && u.authenticate(params['password'])
       session['user_id'] = u.id
-      redirect_to '/days'
+      redirect_to '/home'
     else
-      redirect_to '/sessions/new'
+      redirect_to '/sessions/new', :notice => "Incorrect username/password"
     end
   end
   

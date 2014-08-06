@@ -31,14 +31,18 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
-    @user.password = params[:password]
-    @user.password_confirmation = params[:password_confirmation]
-
-    if @user.save
-      redirect_to "/users/#{ @user.id }"
+    if(@user.authenticate(params['old_password']))
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+      if @user.save
+          redirect_to "/users/#{ @user.id }"
+      else
+          render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to "/users/#{ @user.id }/edit", :notice => "Incorrect password"
     end
+    
   end
 
   def destroy

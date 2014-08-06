@@ -2,48 +2,49 @@
 
 <p><a href="/new_goal">Add a New Goal</a></p>
 
-
+<br />
+<br />
 
 <% @goals.each do |goal| %>
-    <div class="panel panel-default">
-      <div class="panel-heading" style="background-color:<%= Category.find_by(id: goal.category_id).color%>">
-        <h3 class="panel-title" ><%= goal.name %></h3>
+
+<div class="container" style="width: 500px; display: inline-block;">
+    
+<div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading" style="background-color: <%=Category.find_by(id: goal.category_id).color %>;"><a href="/goals/<%= goal.id %>"><%= goal.name %></a></div>
+      <div class="panel-body">
+        <p><%= goal.desc %></p>
+
       </div>
+  <a href='/goals/<%= goal.id %>/i/add_checkpoint'> Add Checkpoint </a>
+      <!-- Table -->
+      <table class="table">
+        <tbody>
+          <% Checkpoint.where(goal_id: goal.id).each do |checkpoint|%>
+            <tr>
+              <td><%= checkpoint.name %></td>
+              <% if checkpoint.completed %>
+              <td><span class="glyphicon glyphicon-ok"></span></td>
+              <% else %>
+              <td><span class="glyphicon glyphicon-minus"></span></td>
+              <% end %>
+              <td>..</td>
+              <td>..</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-    <div class="panel-body">
-      <a href="/goals/add_checkpoint"> Add Checkpoint </a>
-    </div>
-          <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-   <a href="/goals/<%= goal.id %>">Show</a> | <a href="/goals/<%= goal.id %>/edit">Edit</a> | <a href="/goals/<%= goal.id %>/destroy">Destroy</a>
+
+<a href="/goals/<%= goal.id %>/edit">Edit</a> |
+<a href="/goals/<%= goal.id %>/destroy">Destroy</a>
+
+<br />
+<br />
+<br />
+<br />
+
+</div>  
 <% end %>
 
 
