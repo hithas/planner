@@ -8,14 +8,24 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <style>
     
+    <% theme = Theme.find_by(id: User.find_by(id: session['user_id']).theme_id) %>
+    
     body{
-      background-color: #CCC;
-      background-image: url('http://3.bp.blogspot.com/-ReI6RDk2-qw/TZKIimeLUfI/AAAAAAAAAUU/dSOolUc6Yb0/s1600/dracolake1.jpg')
+      background-image: url("<%= theme.background %>")
     }
     
     #allcontent{
-      background-color: #ECFFEC;
+      background-color: <%= theme.color %>;
+      opacity: 0.8;
+      filter: alpha(opacity=80);
     }
+    
+    #allcontent div{
+      opacity: 1.0;
+      filter: alpha(opacity=80);
+    }
+    
+    
     
   </style>
   
@@ -34,7 +44,7 @@
     </div>
   <% end %>
   
-  <nav class="navbar navbar-inverse" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -49,6 +59,7 @@
     <% u = User.find_by(id: session['user_id']) %>
      <a class="navbar-brand" href="/goals">My Goals</a>
     <a class="navbar-brand" href="/users/<%= u.id %>/edit">Edit Profile</a>
+    <a class="navbar-brand" href="/users/<%= u.id %>/theme">Change Theme</a>
     <ul class="nav navbar-nav navbar-right">
      <p class="navbar-text" class="nav navbar-nav navbar-left"> Signed in as <%= u.name %>  <a href='/sessions/destroy'> Sign out </a></p>
     </ul>

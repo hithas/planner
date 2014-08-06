@@ -33,6 +33,10 @@ class GoalsController < ApplicationController
       end
   end
 
+  def theme
+    
+  end
+  
   def edit
     @goal = Goal.find_by(id: params[:id])
     if @goal.user_id != session['user_id']
@@ -76,7 +80,7 @@ class GoalsController < ApplicationController
     checkpoint.save
     
     if g.save && checkpoint.save
-      redirect_to "/goals/#{ params['id'] }"
+      redirect_to "/goals/##{ params['id'] }"
     else
       render 'add_checkpoint'
     end

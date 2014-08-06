@@ -1,0 +1,5 @@
+<form action="/goals/<%= @goal.id %>/change_theme">
+  <% Theme.all.each do |theme| %>
+  <input type="radio" name="theme_id" value="theme.id"><%= theme.name %><br>
+  <% end %>
+</form>
