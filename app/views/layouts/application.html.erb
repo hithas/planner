@@ -6,35 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <style>
-    <% if session['user_id'] %>
-    <% theme = Theme.find_by(id: User.find_by(id: session['user_id']).theme_id) %>
-    
-    body{
-      background-image: url("<%= theme.background %>")
-    }
-    
-    #allcontent{
-      background-color: <%= theme.color %>;
-      <% if theme.transparent %>
-        opacity: 0.8;
-        filter: alpha(opacity=80);
-      <%end%>
-    }
-    
-    #allcontent div{
-      background-color: #FFF;
-      
-    }
-    
-    #allcontent div{
-      opacity: 1.0;
-      filter: alpha(opacity=80);
-    }
-    
-    
-    <% end %>
-  </style>
+  
   
 </head>
 <body>
@@ -52,13 +24,7 @@
   <% end %>
   
   
-  <% if session['user_id'] %>
-    <% if theme.navbar%>
-      <nav class="navbar navbar-default" role="navigation">
-    <% else %>
-      <nav class="navbar navbar-inverse" role="navigation">
-    <% end %>
-  <%else %>
+  
         <nav class="navbar navbar-default" role="navigation">
   <% end %>
   <div class="container-fluid">
