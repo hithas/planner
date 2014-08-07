@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807011944) do
+ActiveRecord::Schema.define(version: 20140807041342) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -27,24 +27,6 @@ ActiveRecord::Schema.define(version: 20140807011944) do
     t.boolean  "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "days", force: true do |t|
-    t.date     "date"
-    t.boolean  "weekday"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "events", force: true do |t|
-    t.time     "start_time"
-    t.time     "end_time"
-    t.integer  "category_id"
-    t.integer  "day_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "desc"
-    t.integer  "timespan"
   end
 
   create_table "goals", force: true do |t|
