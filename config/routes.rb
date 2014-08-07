@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/sessions/create' => 'sessions#create'
   get '/sessions/destroy' => 'sessions#destroy'
   
-  get '/home' => 'sessions#home'
+  root to: 'sessions#home'
   # Routes for the Day resource:
   # CREATE
   get '/new_day' => 'days#new'
