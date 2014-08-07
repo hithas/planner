@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     u = User.find_by(name: params['username'])
     if u && u.authenticate(params['password'])
       session['user_id'] = u.id
-      redirect_to '/home'
+      redirect_to '/'
     else
       redirect_to '/sessions/new', :notice => "Incorrect username/password"
     end
