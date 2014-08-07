@@ -23,21 +23,56 @@
           
           <% Checkpoint.where(goal_id: goal.id).each do |checkpoint|%>
             <tr>
-              <td><%= checkpoint.name %></td>
+              <td><span id = "text_<%=checkpoint.id%>"> <%= checkpoint.name %> </span>
+                <form id = "form_<%=checkpoint.id%>">
+                  <input type='text' name='name' value = '<%=checkpoint.name%>'>
+                  <input type = "submit">
+                </form>
+              <script>
+                  $('form').hide();
+              </script>
+              </td>
+               
               <% if checkpoint.completed %>
               <td><span class="glyphicon glyphicon-ok">  </span></td>
               <% else %>
               <td><span id = 'dash_<%=checkpoint.id%>'>-</span></td>
               <script>
                 $('#dash_<%=checkpoint.id%>').click( function() {
-                  $('#dash_<%=checkpoint.id%>').addClass("glyphicon glyphicon-chevron-right");
-                  <% checkpoint.completed = true %>
-                    <% checkpoint.save %>
+                  $('#dash_<%=checkpoint.id%>').addClass("glyphicon glyphicon-ok");
+                  <% c = Checkpoint.find_by(id: checkpoint.id) %>
+                    <% c.completed = true %>
+                    <% c.save %>
                 });
               </script>
               <% end %>
               <td>-</td>
               <td>-</td>
+              <td><span class="glyphicon glyphicon-pencil"  id='edit_<%=checkpoint.id%>'>  </span>
+                
+                 <script>
+                $('#edit_<%=checkpoint.id%>').click( function() {
+                  
+                  $("#form_<%=checkpoint.id%>").show();
+                  $("#text_<%=checkpoint.id%>").hide();
+
+                });
+                </script>
+              </td>
+              <td><span id='remove_<%=checkpoint.id%>' class="glyphicon glyphicon-remove"> </span>
+              <script>
+                $('#remove_<%=checkpoint.id%>').click( function() {
+                  
+                  $('#dash_<%=checkpoint.id%>').removeClass("glyphicon glyphicon-ok");
+                  <% c = Checkpoint.find_by(id: checkpoint.id)%>
+                    <% c.completed = true %>
+                    <% c.save %>
+                });
+              </script>
+              
+              
+              </td>
+               
             </tr>
           <% end %>
         </tbody>
