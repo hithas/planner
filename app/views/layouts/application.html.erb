@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <style>
-    
+    <% if session['user_id'] %>
     <% theme = Theme.find_by(id: User.find_by(id: session['user_id']).theme_id) %>
     
     body{
@@ -16,8 +16,15 @@
     
     #allcontent{
       background-color: <%= theme.color %>;
-      opacity: 0.8;
-      filter: alpha(opacity=80);
+      <% if theme.transparent %>
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+      <%end%>
+    }
+    
+    #allcontent div{
+      background-color: #FFF;
+      
     }
     
     #allcontent div{
@@ -26,7 +33,7 @@
     }
     
     
-    
+    <% end %>
   </style>
   
 </head>
@@ -44,7 +51,16 @@
     </div>
   <% end %>
   
-  <nav class="navbar navbar-default" role="navigation">
+  
+  <% if session['user_id'] %>
+    <% if theme.navbar%>
+      <nav class="navbar navbar-default" role="navigation">
+    <% else %>
+      <nav class="navbar navbar-inverse" role="navigation">
+    <% end %>
+  <%else %>
+        <nav class="navbar navbar-default" role="navigation">
+  <% end %>
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

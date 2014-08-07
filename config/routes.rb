@@ -68,6 +68,8 @@ Rails.application.routes.draw do
   # UPDATE
   get '/users/:id/edit' => 'users#edit'
   get '/users/:id/update' => 'users#update'
+  get '/users/:id/theme' => 'users#theme'
+  get '/users/:id/change_theme' => 'users#change_theme'
 
   # DELETE
   get '/users/:id/destroy' => 'users#destroy'
@@ -82,6 +84,7 @@ Rails.application.routes.draw do
 
   # READ
   get '/goals' => 'goals#index'
+  get '/category_index' => 'goals#category_index'
   get '/goals/:id' => 'goals#show'
 
   # UPDATE

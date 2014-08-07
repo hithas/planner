@@ -32,10 +32,6 @@ class GoalsController < ApplicationController
         redirect_to "/new_goal", :notice => @goal.errors.full_messages.join(' ')
       end
   end
-
-  def theme
-    
-  end
   
   def edit
     @goal = Goal.find_by(id: params[:id])

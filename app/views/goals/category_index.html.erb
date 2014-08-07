@@ -1,0 +1,45 @@
+<% Category.all.each do |category| %>
+
+<% Goal.where(category_id: category.id).each do |goal| %>
+
+    <div class="container" style="width: 500px; display: inline-block;" id="<%= goal.id %>">
+
+    <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading" style="background-color: <%=Category.find_by(id: goal.category_id).color %>;"><a href="/goals/<%= goal.id %>"><%= goal.name %></a></div>
+          <div class="panel-body">
+            <p><%= goal.desc %></p>
+
+          </div>
+      <a href='/goals/<%= goal.id %>/i/add_checkpoint'> Add Checkpoint </a>
+          <!-- Table -->
+          <table class="table">
+            <tbody>
+              <% Checkpoint.where(goal_id: goal.id).each do |checkpoint|%>
+                <tr>
+                  <td><%= checkpoint.name %></td>
+                  <% if checkpoint.completed %>
+                  <td><span class="glyphicon glyphicon-ok"></span></td>
+                  <% else %>
+                  <td>-</td>
+                  <% end %>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+    <a href="/goals/<%= goal.id %>/edit">Edit</a> |
+    <a href="/goals/<%= goal.id %>/destroy">Destroy</a>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    </div>  
+    <% end %>
+
+<% end %>

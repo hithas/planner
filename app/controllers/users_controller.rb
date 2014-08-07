@@ -42,9 +42,19 @@ class UsersController < ApplicationController
     else
       redirect_to "/users/#{ @user.id }/edit", :notice => "Incorrect password"
     end
-    
   end
 
+  def theme
+    @user = User.find_by(id: params['id'])
+  end
+  
+  def change_theme
+    user = User.find_by(id: params['id'])
+    user.theme_id = params['theme_id']
+    user.save
+    redirect_to "/goals"
+  end
+  
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
