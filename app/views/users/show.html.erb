@@ -8,6 +8,10 @@
   <strong>Password</strong>:<br />
   <p><%= @user.password %></p>
 </div>
+<div>
+  <strong>Theme</strong>:<br />
+  <p><%= Theme.find_by(id: @user.theme_id).name %></p>
+</div>
 
 <a href="/users/<%= @user.id %>/edit">Edit</a> |
 <a href="/users/<%= @user.id %>/destroy">Destroy</a>
