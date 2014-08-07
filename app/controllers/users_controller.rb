@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user.name = params[:name]
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
+    @user.theme_id = 1
 
     if @user.save
       redirect_to "/users/#{ @user.id }"
