@@ -20,13 +20,21 @@
       <!-- Table -->
       <table class="table">
         <tbody>
+          
           <% Checkpoint.where(goal_id: goal.id).each do |checkpoint|%>
             <tr>
               <td><%= checkpoint.name %></td>
               <% if checkpoint.completed %>
-              <td><span class="glyphicon glyphicon-ok"></span></td>
+              <td><span class="glyphicon glyphicon-ok">  </span></td>
               <% else %>
-              <td>-</td>
+              <td><span id = 'dash_<%=checkpoint.id%>'>-</span></td>
+              <script>
+                $('#dash_<%=checkpoint.id%>').click( function() {
+                  $('#dash_<%=checkpoint.id%>').addClass("glyphicon glyphicon-chevron-right");
+                  <% checkpoint.completed = true %>
+                    <% checkpoint.save %>
+                });
+              </script>
               <% end %>
               <td>-</td>
               <td>-</td>
