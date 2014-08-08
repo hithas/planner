@@ -7,7 +7,7 @@
 <br />
 <br />
 
-<% Goal.where(category_id: category.id, user_id: User.find_by(id: session['user_id'])).each do |goal| %>
+<% Goal.where(category_id: category.id.to_i, user_id: User.find_by(id: session['user_id'])).each do |goal| %>
 
 <div class="container" style="width: 500px; display: inline-block;" id="<%= goal.id %>">
     
