@@ -8,3 +8,5 @@ User stories:
  - The student completes a step. She checks off the corresponding checkpoint and enters the date she completed it. She can also delete it or edit its name
  
  - The student wants to create a category of projects labeled "schoolwork" and a category labeled "extracurricular". She creates both categories, and assigns each an identifying color. She can then view her goals sorted into these two separate categories
+
+ - The student wants to change the background and colors of the interface. She goes to "Change Theme" and chooses the theme she wants
