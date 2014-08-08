@@ -1,45 +1,43 @@
+<p><a href="/new_goal">Add a New Goal</a> | <a href="/new_category">New Category</a> </p>
+
 <% Category.all.each do |category| %>
 
-<% Goal.where(category_id: category.id).each do |goal| %>
+<h2> <%= category.name %> </h2>
 
-    <div class="container" style="width: 500px; display: inline-block;" id="<%= goal.id %>">
+<br />
+<br />
 
-    <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading" style="background-color: <%=Category.find_by(id: goal.category_id).color %>;"><a href="/goals/<%= goal.id %>"><%= goal.name %></a></div>
-          <div class="panel-body">
-            <p><%= goal.desc %></p>
+<% Goal.where(category_id: category.id, user_id: User.find_by(id: session['user_id'])).each do |goal| %>
 
-          </div>
-      <a href='/goals/<%= goal.id %>/i/add_checkpoint'> Add Checkpoint </a>
-          <!-- Table -->
-          <table class="table">
-            <tbody>
-              <% Checkpoint.where(goal_id: goal.id).each do |checkpoint|%>
-                <tr>
-                  <td><%= checkpoint.name %></td>
-                  <% if checkpoint.completed %>
-                  <td><span class="glyphicon glyphicon-ok"></span></td>
-                  <% else %>
-                  <td>-</td>
-                  <% end %>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+<div class="container" style="width: 500px; display: inline-block;" id="<%= goal.id %>">
+    
+<div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading" style="background-color: <%=Category.find_by(id: goal.category_id).color %>;"><a href="/goals/#<%= goal.id %>"><%= goal.name %></a></div>
+      <div class="panel-body">
+        <p><%= goal.desc %></p>
 
-    <a href="/goals/<%= goal.id %>/edit">Edit</a> |
-    <a href="/goals/<%= goal.id %>/destroy">Destroy</a>
+      </div>
+    </div>
 
-    <br />
-    <br />
-    <br />
-    <br />
+<div>
 
-    </div>  
-    <% end %>
+  
+</div>
+<a href="/goals/<%= goal.id %>/edit">Edit</a> |
+<a href="/goals/<%= goal.id %>/destroy">Destroy</a>
 
+<br />
+<br />
+<br />
+<br />
+
+</div>  
+<tr>
+          
 <% end %>
+
+  <% end %>
+  
+ 
+

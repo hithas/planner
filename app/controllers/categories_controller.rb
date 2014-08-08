@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
     @category.color = params[:color]
 
     if @category.save
-      redirect_to "/categories/#{ @category.id }"
+      redirect_to "/goals"
     else
       render 'new'
     end

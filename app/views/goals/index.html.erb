@@ -1,6 +1,6 @@
 <h1>Goals</h1>
 
-<p><a href="/new_goal">Add a New Goal</a> | <a href="/category_index">View by category</a></p>
+<p><a href="/new_goal">Add a New Goal</a> | <a href="/category_index">View by category</a> | <a href="/new_category">New Category</a> </p>
 
 <br />
 <br />
@@ -16,39 +16,73 @@
         <p><%= goal.desc %></p>
 
       </div>
-  <a href='/goals/<%= goal.id %>/i/add_checkpoint'> Add Checkpoint </a>
-      <!-- Table -->
+      <!-- ****** TABLE ********* -->
       <table class="table">
         <tbody>
-          
+          <tr>
+          <form action="/goals/<%=goal.id%>/new_checkpoint" style="float: right;">
+    <input type='submit' style="float: right;">
+    <input type='text' name='name' placeholder='new checkpoint' style="float: right;">
+    
+  </form>
+          </tr>
           <% Checkpoint.where(goal_id: goal.id).each do |checkpoint|%>
             <tr>
-              <td><span id = "text_<%=checkpoint.id%>"> <%= checkpoint.name %> </span>
-                <form id = "form_<%=checkpoint.id%>">
-                  <input type='text' name='name' value = '<%=checkpoint.name%>'>
-                  <input type = "submit">
-                </form>
+              <!-- Hide all forms -->
               <script>
                   $('form').hide();
               </script>
+              
+              <!-- NAME -->
+              <td><span id = "text_<%=checkpoint.id%>"> <%= checkpoint.name %> </span>
+                <form id = "form_<%=checkpoint.id%>" action="/goals/<%=goal.id%>/edit_checkpoint/<%=checkpoint.id%>">
+                  <input type='text' name='name' value = '<%=checkpoint.name%>'>
+                </form>
+              <script>
+                
+              </script>
+              
               </td>
-               
+              <!-- END NAME -->
+              
+              <!-- COMPLETED OR NOT -->
               <% if checkpoint.completed %>
               <td><span class="glyphicon glyphicon-ok">  </span></td>
               <% else %>
-              <td><span id = 'dash_<%=checkpoint.id%>'>-</span></td>
+              <td><p id = 'dash_<%=checkpoint.id%>' href="/goals/<%=goal.id%>/mark_as_complete/<%=checkpoint.id%>">-</p></td>
+              <% end %>
+              
               <script>
-                $('#dash_<%=checkpoint.id%>').click( function() {
-                  $('#dash_<%=checkpoint.id%>').addClass("glyphicon glyphicon-ok");
-                  <% c = Checkpoint.find_by(id: checkpoint.id) %>
-                    <% c.completed = true %>
-                    <% c.save %>
+                $('#dash_<%=checkpoint.id%>').click( function() {  
+                  $('#dform_<%=checkpoint.id%>').show()
+    $('td').background_color('red')              
+                  
                 });
               </script>
-              <% end %>
-              <td>-</td>
-              <td>-</td>
-              <td><span class="glyphicon glyphicon-pencil"  id='edit_<%=checkpoint.id%>'>  </span>
+              <!-- END COMPLETED OR NOT -->
+              
+              <!-- EDIT -->
+              
+              <!-- DATE -->
+              <td style="width: 100px">
+                <% if checkpoint.completed && checkpoint.date %>
+                <p><%= checkpoint.date.strftime("%y/%d/%m") %></p>
+                <% else %>
+                <!-- Date form -->
+                <form id = "dform_<%=checkpoint.id%>" action="/goals/<%=goal.id%>/mark_as_complete/<%=checkpoint.id%>" >
+                  <input type='date' name='date' placeholder='date completed' style="width: 100px">
+                </form> 
+                <!-- End of date form -->
+                <% end %>
+                
+                <script>
+                  $('#form_<%=checkpoint.id%>').submit( function() {
+                  $('#dform_<%=checkpoint.id%>').show()
+
+                });
+                </script>
+              </td>
+              <td><span class="glyphicon glyphicon-pencil"  id='edit_<%=checkpoint.id%>'></span>
                 
                  <script>
                 $('#edit_<%=checkpoint.id%>').click( function() {
@@ -59,26 +93,25 @@
                 });
                 </script>
               </td>
-              <td><span id='remove_<%=checkpoint.id%>' class="glyphicon glyphicon-remove"> </span>
-              <script>
-                $('#remove_<%=checkpoint.id%>').click( function() {
-                  
-                  $('#dash_<%=checkpoint.id%>').removeClass("glyphicon glyphicon-ok");
-                  <% c = Checkpoint.find_by(id: checkpoint.id)%>
-                    <% c.completed = true %>
-                    <% c.save %>
-                });
-              </script>
+              <!-- END DATE -->
               
+              <!-- *********** REMOVE *************-->
+              <td><a href="/goals/<%= goal.id %>/destroy_checkpoint/<%= checkpoint.id%>"><span id='remove_<%=checkpoint.id%>' class="glyphicon glyphicon-remove"> </span></a>
               
-              </td>
-               
+             </td>
+             <!-- *********** END OF REMOVE *************-->
+              
             </tr>
           <% end %>
+        
         </tbody>
       </table>
     </div>
 
+<div>
+
+  
+</div>
 <a href="/goals/<%= goal.id %>/edit">Edit</a> |
 <a href="/goals/<%= goal.id %>/destroy">Destroy</a>
 
@@ -88,6 +121,8 @@
 <br />
 
 </div>  
+<tr>
+          
 <% end %>
 
 

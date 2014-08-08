@@ -1,6 +1,6 @@
 <form action="/users/<%= @user.id %>/change_theme">
   <% Theme.all.each do |theme| %>
-  <input type="radio" name="theme_id" value="<%=theme.id%>"><%= theme.name %><br>
+  <input type="radio" name="theme_id" value="<%=theme.id%>">&nbsp;<%= theme.name %><br>
   <% end %>
   <input type="submit">
 </form>

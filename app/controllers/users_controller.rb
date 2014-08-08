@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
-
+before_filter :login_required, :except => [:new, :create]
+  
   def index
     @users = User.all
   end
 
   def show
+    @user = User.find_by(id: params[:id])
+    if @user.id != session['user_id']
+      redirect_to "/goals", :notice => "Access denied"
+    end
     @user = User.find_by(id: params[:id])
   end
 
@@ -26,6 +31,10 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(id: params[:id])
+    if @user.id != session['user_id']
+      redirect_to "/goals", :notice => "Access denied"
+    end
     @user = User.find_by(id: params[:id])
   end
 
@@ -50,6 +59,10 @@ class UsersController < ApplicationController
   end
   
   def change_theme
+    @user = User.find_by(id: params[:id])
+    if @user.id != session['user_id']
+      redirect_to "/goals", :notice => "Access denied" and return
+    end
     user = User.find_by(id: params['id'])
     user.theme_id = params['theme_id']
     user.save

@@ -6,6 +6,10 @@ class GoalsController < ApplicationController
     @goals = Goal.where(user_id: session['user_id'])
   end
 
+  def category_index
+    @goals = Goal.where(user_id: session['user_id'])
+  end
+  
   def show
     @goal = Goal.find_by(id: params[:id])
     if @goal.user_id != session['user_id']
@@ -59,7 +63,6 @@ class GoalsController < ApplicationController
   
   def add_checkpoint
     @goal = Goal.find_by(id: params['id'])
-    @page = params['page']
     render 'add_checkpoint'
   end
   
@@ -81,7 +84,45 @@ class GoalsController < ApplicationController
       render 'add_checkpoint'
     end
   end
+  
+  
+  def edit_checkpoint
+    goal = Goal.find_by(id: params[:id])
+    checkpoint = Checkpoint.find_by(id: params[:cid])
+    checkpoint.name = params['name']
+    checkpoint.save
+    redirect_to "/goals/##{ goal.id }"
+  end
 
+  def mark_as_complete
+    checkpoint = Checkpoint.find_by(id: params[:cid])
+    checkpoint.completed = true
+    checkpoint.date = params[:date]
+    checkpoint.save
+    redirect_to "/goals/##{ params[:id] }"
+  end
+  
+  def add_checkpoint_date
+    checkpoint = Checkpoint.find_by(id: params[:cid])
+    checkpoint.date = params[:date]
+    checkpoint.save
+    redirect_to "/goals/##{ params[:id] }"
+  end
+  
+  def destroy_checkpoint
+    checkpoint = Checkpoint.find_by(id: params[:cid])
+    checkpoint.destroy
+    redirect_to "/goals/##{ params[:id] }"
+  end
+  
+  def reset_checkpoints
+    Checkpoint.all.each do |checkpoint|
+      checkpoint.completed = false
+      checkpoint.save
+    end
+    redirect_to "/goals"
+  end
+  
   def destroy
     @goal = Goal.find_by(id: params[:id])
     if @goal.user_id != session['user_id']

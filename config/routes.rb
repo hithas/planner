@@ -5,22 +5,6 @@ Rails.application.routes.draw do
   get '/sessions/destroy' => 'sessions#destroy'
   
   root to: 'sessions#home'
-  # Routes for the Day resource:
-  # CREATE
-  get '/new_day' => 'days#new'
-  get '/create_day' => 'days#create'
-
-  # READ
-  get '/days' => 'days#index'
-  get '/days/:id' => 'days#show'
-
-  # UPDATE
-  get '/days/:id/edit' => 'days#edit'
-  get '/days/:id/update' => 'days#update'
-
-  # DELETE
-  get '/days/:id/destroy' => 'days#destroy'
-  #------------------------------
 
   # Routes for the Category resource:
   # CREATE
@@ -39,22 +23,6 @@ Rails.application.routes.draw do
   get '/categories/:id/destroy' => 'categories#destroy'
   #------------------------------
 
-  # Routes for the Event resource:
-  # CREATE
-  get '/new_event' => 'events#new'
-  get '/create_event' => 'events#create'
-
-  # READ
-  get '/events' => 'events#index'
-  get '/events/:id' => 'events#show'
-
-  # UPDATE
-  get '/events/:id/edit' => 'events#edit'
-  get '/events/:id/update' => 'events#update'
-
-  # DELETE
-  get '/events/:id/destroy' => 'events#destroy'
-  #------------------------------
   
   # Routes for the User resource:
   # CREATE
@@ -90,9 +58,14 @@ Rails.application.routes.draw do
   # UPDATE
   get '/goals/:id/edit' => 'goals#edit'
   get '/goals/:id/update' => 'goals#update'
-  get '/goals/:id/:page/add_checkpoint' => 'goals#add_checkpoint'
-  get '/goals/:id/:page/new_checkpoint' => 'goals#new_checkpoint'
-
+  get '/goals/:id/add_checkpoint' => 'goals#add_checkpoint'
+  get '/goals/:id/new_checkpoint' => 'goals#new_checkpoint'
+  get '/goals/:id/edit_checkpoint/:cid' => 'goals#edit_checkpoint'
+  get '/goals/:id/mark_as_complete/:cid' => 'goals#mark_as_complete'
+  get '/goals/:id/destroy_checkpoint/:cid' => 'goals#destroy_checkpoint'
+  get '/goals/:id/add_checkpoint_date/:cid' => 'goals#add_checkpoint_date'
+  get '/reset_checkpoints' => 'goals#reset_checkpoints'
+  
   # DELETE
   get '/goals/:id/destroy' => 'goals#destroy'
 
