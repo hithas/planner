@@ -1,28 +1,10 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+My app: Lets users chart their progress on multiple different projects/goals
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+User stories:
+ -A student wants to track her progress on her English paper. She first logs in. Then she creates a new goal and assigns it a category, and then creates several checkpoints, like "Research", "Prewriting", "Final Draft", etc.
+ 
+ - The student completes a step. She checks off the corresponding checkpoint and enters the date she completed it. She can also delete it or edit its name
+ 
+ -The student wants to create a category of projects labeled "schoolwork" and a category labeled "extracurricular". She creates both categories, and assigns each an identifying color. She can then view her goals sorted into these two separate categories
